@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giáng Sinh Ấm Áp Gửi Phương Danh 🎄</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,sans-serif}
+
+    body{
+      min-height:100vh;
+      background:url('https://images.unsplash.com/photo-1543589077-47d81606c1bf') center/cover no-repeat fixed;
+      color:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden
+    }
+    body::before{content:"";position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:-1}
+
+    .card{
+      background:rgba(255,255,255,.12);
+      backdrop-filter:blur(12px);
+      border-radius:24px;
+      padding:40px;
+      width:90%;max-width:500px;text-align:center;
+      box-shadow:0 20px 40px rgba(0,0,0,.35);
+      animation:fadeIn 1.4s ease
+    }
+
+    
+    
+
+    h1{font-size:2.2rem;margin-bottom:16px}
+    h1 span{color:#ffb703}
+    p{font-size:1.1rem;line-height:1.6;margin-bottom:24px}
+
+    .heart{font-size:3rem;animation:beat 1.2s infinite;margin-bottom:16px}
+
+    button{
+      background:#e63946;border:none;border-radius:999px;padding:12px 28px;
+      color:#fff;font-size:1rem;cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,.35);
+      animation:pulse 1.5s infinite
+    }
+    button:hover{transform:translateY(-2px)}
+
+    .message{display:none;margin-top:20px;font-size:1.1rem;color:#ffd166}
+    .signature{margin-top:14px;color:#ffb703;font-style:italic}
+    .signature span{color:#ffd166;font-weight:bold}
+
+    .snow{position:fixed;top:-10px;opacity:.85;animation:fall linear infinite;user-select:none}
+    .floating-heart{position:fixed;bottom:0;font-size:20px;animation:floatUp 3s linear forwards;pointer-events:none}
+    .firework{position:fixed;width:6px;height:6px;border-radius:50%;background:gold;animation:explode 1s ease-out forwards}
+
+    50%{box-shadow:0 0 32px rgba(255,183,3,.9)}100%{box-shadow:0 0 10px rgba(255,183,3,.4)}}
+    @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+    @keyframes fall{to{transform:translateY(110vh)}}
+    @keyframes floatUp{from{transform:translateY(0) scale(1);opacity:1}to{transform:translateY(-120vh) scale(1.8);opacity:0}}
+    @keyframes explode{from{transform:scale(0);opacity:1}to{transform:scale(15);opacity:0}}
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="heart">❤️</div>
+  <h1>Merry <span>Christmas</span> Phương Danh (Pi)!</h1>
+  <p>
+    Merry Christmas <b>Phương Danh (Pi)</b> 🎄<br>
+    Mong mùa đông này sẽ dịu dàng với Pi,<br>
+    mang theo bình yên, niềm vui<br>
+    và những điều khiến Pi mỉm cười mỗi ngày ✨
+  </p>
+  <button onclick="showMessage()">Bấm vào đây nè 🎁</button>
+  <div class="message" id="message"></div>
+</div>
+
+<audio id="bgm" loop>
+  <source src="jingle-bells.mp3" type="audio/mpeg" />
+</audio>
+
+<script>
+  function showMessage(){
+    const msg=document.getElementById('message');
+    msg.style.display='block';
+    msg.innerHTML='';
+
+    const text="Chúc Pi một Giáng Sinh thật ấm áp, nhiều tiếng cười, nhiều yêu thương và thật nhiều khoảnh khắc đáng nhớ 🎁❄️";
+    let i=0;
+    const typing=setInterval(()=>{
+      msg.innerHTML+=text.charAt(i);
+      i++;if(i>=text.length)clearInterval(typing)
+    },40);
+
+    const sign=document.createElement('div');
+    sign.className='signature';
+    sign.innerHTML='— Nguyễn Anh Vũ <span>đẹp trai</span> 😎✨';
+    setTimeout(()=>msg.appendChild(sign),text.length*40+200);
+
+    for(let i=0;i<16;i++){
+      const h=document.createElement('div');
+      h.className='floating-heart';h.innerText='💖';
+      h.style.left=Math.random()*100+'vw';
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),3000)
+    }
+
+    for(let i=0;i<6;i++){
+      const f=document.createElement('div');
+      f.className='firework';
+      f.style.left=30+Math.random()*40+'vw';
+      f.style.top=20+Math.random()*30+'vh';
+      document.body.appendChild(f);
+      setTimeout(()=>f.remove(),1000)
+    }
+
+    document.getElementById('bgm').play().catch(()=>{});
+  }
+
+  for(let i=0;i<40;i++){
+    const s=document.createElement('div');
+    s.className='snow';s.innerText='❄';
+    s.style.left=Math.random()*100+'vw';
+    s.style.fontSize=10+Math.random()*20+'px';
+    s.style.animationDuration=5+Math.random()*5+'s';
+    s.style.animationDelay=Math.random()*5+'s';
+    document.body.appendChild(s)
+  }
+</script>
+</body>
+</html>
